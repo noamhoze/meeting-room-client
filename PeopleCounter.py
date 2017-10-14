@@ -22,6 +22,8 @@ SERVER_ADDRESS = "127.0.0.1"
 SERVER_PORT = 9999
 # TODO: Need to be configured to real room's name
 ROOM_NAME = "yellow"
+# TODO: Need to be configured to real room's max people.
+MAX_PEOPLE = 6
 
 wlbt.Init()
 wlbt.SetSettingsFolder()
@@ -201,7 +203,8 @@ def PeopleCounter():
             # Run this line in python2.7
             # client_socket.send(json.dumps({"room": ROOM_NAME, "number_of_people": numOfPeople}))
             # Run this line in python3
-            client_socket.send(json.dumps({"room": ROOM_NAME, "number_of_people": numOfPeople}).encode('UTF-8'))
+            client_socket.send(json.dumps({"name": ROOM_NAME, "number_of_people": numOfPeople, "max_people": MAX_PEOPLE}
+                                          ).encode('UTF-8'))
     except socket.error:
         print("Server is currently unavailable.")
     except KeyboardInterrupt:
