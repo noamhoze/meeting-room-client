@@ -198,7 +198,10 @@ def PeopleCounter():
         while True:
             dataList = getDataList()
             numOfPeople = analizeAndAlert(dataList, numOfPeople)
-            client_socket.send(json.dumps({"room": ROOM_NAME, "number_of_people": numOfPeople}))
+            # Run this line in python2.7
+            # client_socket.send(json.dumps({"room": ROOM_NAME, "number_of_people": numOfPeople}))
+            # Run this line in python3
+            client_socket.send(json.dumps({"room": ROOM_NAME, "number_of_people": numOfPeople}).encode('UTF-8'))
     except socket.error:
         print("Server is currently unavailable.")
     except KeyboardInterrupt:
